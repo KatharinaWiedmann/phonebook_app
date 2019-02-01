@@ -1,15 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
- <head>
-   <meta charset="utf-8">
-   <title>{{title}} | Flask Experiment</title>
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_for_layout.css')}}">
- </head>
- <body>
-    <header>
-        <h1>Flask Deployment Test - This should be on every page that extends the layout page</h1>
-    </header>
-    {% block content %}
-    {% endblock %}
- </body>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>{{title}} - Phone Book</title>
+
+
+  <link href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <link href="{{url_for('static', filename='css/custom-css.css')}}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">Phone Book</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('business') }}">Business</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('people') }}">People</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  {% block content %}
+  {% endblock content %}
+
+
+  <script src="/static/jquery/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>
