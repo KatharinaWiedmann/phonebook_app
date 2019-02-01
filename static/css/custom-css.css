@@ -1,0 +1,148 @@
+/*Homepage only*/
+
+.carousel {
+background: #ff9999;
+width: 500px;
+margin: 0 auto;
+padding: 20px;
+}
+
+.carousel:hover {
+background: #ff4d4d;
+}
+.opacity_for_whole_page {
+opacity:1;
+z-index: 100;
+}
+
+.test2{
+padding: 0;
+margin: 0px 0px 10px 0px;
+}
+
+.high_opacity h1{
+color: #660000;
+font-size: 90px;
+font-family: Amatic SC;
+font-weight: bold;
+background-color: #ffe6e6;
+padding-left: 10px;
+z-index: 100;
+opacity:1;
+}
+
+.high_opacity h2 {
+color: #660000;
+font-size: 50px;
+background-color: #ffe6e6;
+z-index: 100;
+padding-left: 10px;
+padding-bottom: 10px;
+}
+
+.ada {
+background: #ff9999;
+opacity:0.9;
+padding: 30px;
+}
+
+.ada:hover {
+opacity: 1;
+background: #ff4d4d;
+}
+
+.grace {
+background: #ff9999;
+opacity:0.9;
+padding: 30px;
+}
+
+.grace:hover {
+opacity: 1;
+background: #ff4d4d;
+}
+
+.katherine {
+background: #ff9999;
+opacity:0.9;
+padding: 30px;
+}
+
+.katherine:hover {
+opacity: 1;
+background: #ff4d4d;
+}
+
+#wrapper {
+color: #660000 ;
+background-color: #ffe6e6;
+padding: 10px 0px;
+margin: 10px 0px 0px 0px;
+}
+
+/*Both bio and Homepage*/
+.body_for_homepage {
+padding-top: 300px;
+padding-bottom: 300px;
+background-image: url("../images/background_abstract.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.9;
+z-index: 1;
+background-attachment: fixed;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/*Bio-page only*/
+.body_for_individual_pages {
+padding-top: 10px;
+background-image:url("../images/background_abstract.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.9;
+background-attachment: fixed;
+}
+
+.navbar {
+position:fixed;
+opacity: 1;
+z-index: 100;
+
+}
+
+.body_without_nav {
+background:#ECF5DA;
+padding-top:2%;
+margin-bottom: 15px;
+color: transparent;
+}
+
+.google-font {
+font-family: Amatic SC;
+font-size: 90px;
+color: black;
+}
+
+.body_without_nav:hover {
+background: #E3DAF5;
+padding: 5%;
+color: black;
+}
+
+.blockquote {
+color:#ff4d4d;
+background-color: #ffe6e6;
+}
+
+.container_long_bio {
+background-color: #DAF5F1;
+padding: 10px;
+}
+
+.wrapper_for_body {
+padding-top: 5%;
+}
+

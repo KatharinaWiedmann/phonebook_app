@@ -1,0 +1,12 @@
+
+{% extends "layout.html" %}
+{% block content %}
+
+<nav>
+   <ul class="menu">
+    <li><a href="{{ url_for('contact') }}">Contact form</a></li>
+    <li><a href="{{ url_for('ada') }}">Ada</a></li>
+   </ul>
+ </nav>
+<h1>This is an extension on the layout html - you get it from the index html which is connected to the layout html. </h1>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+   <meta charset="utf-8">
+   <title>{{title}} | Flask Experiment</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_for_layout.css')}}">
+ </head>
+ <body>
+    <header>
+        <h1>Flask Deployment Test - This should be on every page that extends the layout page</h1>
+    </header>
+    {% block content %}
+    {% endblock %}
+ </body>
+</html>
