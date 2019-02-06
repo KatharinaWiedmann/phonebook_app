@@ -43,8 +43,6 @@ def businesssearch():
                 ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
                 if ssorted_dictionary==False or ssorted_dictionary==None:
                     print("The information you have entered has not been recongised.")
-            else:
-                print("wrong")
 
 
         return render_template("searchbusiness.html", title="Business Search", **locals())
