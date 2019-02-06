@@ -42,8 +42,6 @@ def create_business_category_list():
         results = c.fetchall()
         new_results = [i[0] for i in results]
     #    print(new_results)
-        c.close()
-        conn.close()
         return new_results
     except:
         return False
@@ -57,8 +55,6 @@ def extract_business_type_list(user_category):
     business_results = [row for row in c.fetchall()]
 #    for row in c.fetchall():
 #        business_results.append(row)
-    c.close()
-    conn.close()
     print('Lets see the order of the business results', business_results )
     return business_results
 
@@ -101,9 +97,7 @@ def getting_latlong_from_business_category(user_category):
     c = getdb()
     c.execute('SELECT latitude, longitude from business_table INNER JOIN geopointe_table ON (business_table.postcode = geopointe_table.postcode) WHERE business_category =?', (user_category,))
     results = c.fetchall()
-    c.close()
-    conn.close()
-    print('number of results', results)
+#    print('number of results', results)
     if results == []:
         print('This is an empty list')
         return False
@@ -121,20 +115,20 @@ def calculate_haversine_distance(latlong, results):
         for item in results:
            lat1 = radians((item[0]))
            lon1 = radians((item[1]))
-           print('This is lat1',lat1)
-           print('This is lon1',lon1)
+#           print('This is lat1',lat1)
+#           print('This is lon1',lon1)
            dlon = lon2 - lon1
-           print('This is dlon: ',dlon)
+#           print('This is dlon: ',dlon)
            dlat = lat2 - lat1
-           print('This is dlat: ',dlat)
+#           print('This is dlat: ',dlat)
            a = (sin(dlat/2))**2 + cos(lat1) * cos(lat2) * (sin(dlon/2))**2
-           print('This is a: ',a)
+#           print('This is a: ',a)
            c = 2 * atan2( sqrt(a), sqrt(1-a))
-           print('This is c: ',c)
+#           print('This is c: ',c)
            d = 6371 * c
-           print('This is the distance in km: ',d)
+#           print('This is the distance in km: ',d)
            d_rounded = float("{0:.2f}".format(d))
-           print('This is the rounded distance in km: ',d_rounded)
+#           print('This is the rounded distance in km: ',d_rounded)
            distance_list.append(d_rounded)
         return distance_list
     except TypeError:
@@ -518,3 +512,23 @@ def extract_business_type_table():
     c.execute('SELECT * from business_table INNER JOIN geopointe_table ON (business_table.postcode = geopointe_table.postcode)')
     business_table = [row for row in c.fetchall()]
     return business_table
+
+###---Returns all information for businesses---###
+def extract_all_people_table():
+    c = getdb()
+    c.execute('SELECT * from people_table INNER JOIN geopointe_table ON (people_table.postcode = geopointe_table.postcode)')
+    people_table = [row for row in c.fetchall()]
+    return people_table
+
+
+###---Getting latitude and longitude from user's postcode from FLask---###
+def flask_getting_latlong_from_user(user_location):
+    postcode_response = requests.get(endpoint_postcode + user_location)
+    data_postcode = postcode_response.json()
+    if data_postcode['status'] == 200:
+        longitude = data_postcode['result'] ['longitude']
+        latitude = data_postcode['result'] ['latitude']
+        latlong = [latitude, longitude]
+        return latlong
+    else:
+        print('Postcode not recognized!')
