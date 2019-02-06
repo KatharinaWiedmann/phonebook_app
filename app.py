@@ -27,12 +27,25 @@ def businesssearch():
         form_data = request.form
         user_location = form_data["location"]
         user_category = form_data["business_type"]
-        business_results = extract_business_type_list(user_category)
-        user_LatLong = flask_getting_latlong_from_user(user_location)
-        rresults = getting_latlong_from_business_category(user_category)
-        ddistance_list = calculate_haversine_distance(user_LatLong, rresults)
-        ddistance_postcode_dictionary = create_unsorted_dictionary(ddistance_list, business_results)
-        ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
+        user_name = form_data["business_name"]
+
+        if user_category!="None" and user_location:
+            ssorted_dictionary = flask_sort_business_category(user_category, user_location)
+
+        elif user_category=="None" and user_name and user_location:
+            business_name_list = create_business_name_list()
+            business_results = extract_business_name_list(user_name)
+            if business_results != False:
+                user_LatLong = flask_getting_latlong_from_user(user_location)
+                rresults = getting_latlong_from_business_name(user_name)
+                ddistance_list = calculate_haversine_distance(user_LatLong, rresults)
+                ddistance_postcode_dictionary = create_unsorted_dictionary(ddistance_list, business_results)
+                ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
+                if ssorted_dictionary==False or ssorted_dictionary==None:
+                    print("The information you have entered has not been recongised.")
+            else:
+                print("wrong")
+
 
         return render_template("searchbusiness.html", title="Business Search", **locals())
 

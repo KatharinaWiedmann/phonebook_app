@@ -135,11 +135,11 @@ def calculate_haversine_distance(latlong, results):
         print('Please enter a valid postcode')
 
 
-def create_unsorted_dictionary(distance_list, business_results):
+def create_unsorted_dictionary(ddistance_list, business_results):
 #    distance_postcode_dictionary = dict(zip(distance_list,business_results))
     distance_postcode_dictionary = {}
     count = 0
-    for distance in distance_list:
+    for distance in ddistance_list:
         distance_postcode_dictionary[distance] = business_results[count]
         count += 1
     return distance_postcode_dictionary
@@ -197,13 +197,11 @@ def extract_business_name_list(user_name):
     c = getdb()
     c.execute('SELECT * from business_table INNER JOIN geopointe_table ON (business_table.postcode = geopointe_table.postcode) WHERE business_name like ?', ("%"+user_name+"%",))
     business_name_results = [row for row in c.fetchall()]
-    c.close()
-    conn.close()
     if business_name_results == []:
         print('Business name not in phonebook. Please try again.')
         return False
     else:
-        print('Lets see the order of the business results', business_name_results )
+#        print('Lets see the order of the business results', business_name_results )
         return business_name_results
 
 
@@ -211,8 +209,6 @@ def getting_latlong_from_business_name(user_name):
     c = getdb()
     c.execute('SELECT latitude, longitude from business_table INNER JOIN geopointe_table ON (business_table.postcode = geopointe_table.postcode) WHERE business_name like ?', ("%"+user_name+"%",))
     results = c.fetchall()
-    c.close()
-    conn.close()
     print('number of results', results)
     if results == []:
         print('This is an empty list')
@@ -228,8 +224,6 @@ def create_business_name_list():
         results = c.fetchall()
         new_results = [i[0] for i in results]
     #    print(new_results)
-        c.close()
-        conn.close()
         return new_results
     except:
         return False
@@ -521,7 +515,7 @@ def extract_all_people_table():
     return people_table
 
 
-###---Getting latitude and longitude from user's postcode from FLask---###
+###---Getting latitude and longitude from user's postcode using FLask---###
 def flask_getting_latlong_from_user(user_location):
     postcode_response = requests.get(endpoint_postcode + user_location)
     data_postcode = postcode_response.json()
@@ -532,3 +526,14 @@ def flask_getting_latlong_from_user(user_location):
         return latlong
     else:
         print('Postcode not recognized!')
+
+###---Flask: search by business type and location---####
+
+def flask_sort_business_category(user_category, user_location):
+        business_results = extract_business_type_list(user_category)
+        user_LatLong = flask_getting_latlong_from_user(user_location)
+        rresults = getting_latlong_from_business_category(user_category)
+        ddistance_list = calculate_haversine_distance(user_LatLong, rresults)
+        ddistance_postcode_dictionary = create_unsorted_dictionary(ddistance_list, business_results)
+        ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
+        return ssorted_dictionary
