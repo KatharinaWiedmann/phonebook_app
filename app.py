@@ -44,7 +44,6 @@ def businesssearch():
                 if ssorted_dictionary==False or ssorted_dictionary==None:
                     print("The information you have entered has not been recongised.")
 
-
         return render_template("searchbusiness.html", title="Business Search", **locals())
 
 
