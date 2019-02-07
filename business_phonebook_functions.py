@@ -537,3 +537,11 @@ def flask_sort_business_category(user_category, user_location):
         ddistance_postcode_dictionary = create_unsorted_dictionary(ddistance_list, business_results)
         ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
         return ssorted_dictionary
+
+###---extract info by business name and business category---###
+
+def extract_business_type_and_name_list(user_category, user_name):
+    c = getdb()
+    c.execute('SELECT * from business_table INNER JOIN geopointe_table ON (business_table.postcode = geopointe_table.postcode) WHERE business_category =? and WHERE user_name like ?', (user_category, "%"+user_name+"%",))
+    business_results = [row for row in c.fetchall()]
+    return business_results

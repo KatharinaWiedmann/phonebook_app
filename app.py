@@ -18,7 +18,7 @@ def people():
     return render_template("people.html", title="People", people_table=people_table)
 
 @app.route("/searchbusiness", methods=['GET', 'POST'])
-def businesssearch():
+def searchbusiness():
     business_types = create_business_category_list()
     if request.method == 'GET':
         return render_template("searchbusiness.html", title="Business Search", business_types=business_types)
@@ -29,7 +29,7 @@ def businesssearch():
         user_category = form_data["business_type"]
         user_name = form_data["business_name"]
 
-        if user_category!="None" and user_location:
+        if user_category!="None" and user_name=="" and user_location:
             ssorted_dictionary = flask_sort_business_category(user_category, user_location)
 
         elif user_category=="None" and user_name and user_location:
@@ -41,8 +41,9 @@ def businesssearch():
                 ddistance_list = calculate_haversine_distance(user_LatLong, rresults)
                 ddistance_postcode_dictionary = create_unsorted_dictionary(ddistance_list, business_results)
                 ssorted_dictionary = create_distance_postcode_dictionary(ddistance_postcode_dictionary)
-                if ssorted_dictionary==False or ssorted_dictionary==None:
-                    print("The information you have entered has not been recongised.")
+
+        else:
+            seaching_both = True
 
         return render_template("searchbusiness.html", title="Business Search", **locals())
 

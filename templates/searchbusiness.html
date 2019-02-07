@@ -29,7 +29,7 @@
 </div>
 
 <div class="container">
-{% if user_location and business_results!=False %}
+{% if user_location and business_results!=False and seaching_both!=True %}
 
 <div class ="container" id="business-table">
     <div class="row">
@@ -68,6 +68,9 @@
 
 {% elif business_results==False %}
 <p>No results found</p>
+
+{% elif seaching_both==True %}
+<p>Please only search by buiness name OR business category</p>
 
 {% else %}
 
