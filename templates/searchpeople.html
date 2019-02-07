@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+  <p>Search by surname</p>
+  <div class="form-group" id="search">
+    <form method="post" action="/searchpeople">
+
+
+      <label for="last_name">Surname</label>
+      <input type="text" id="last_name" name="last_name" />
+
+      <label for="location">Postcode</label>
+      <input type="text" id="location" name="location" required="required" />
+
+      <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
+    </form>
+    <a href="/people" class="btn btn-outline-dark" role="button">View All People</a>
+  </div>
+</div>
+
+<div class="container">
+  {% if user_location and user_name and people_results != False %}
+  <p>
+    This is the userlocation : {{user_location}}
+  </p>
+  <p>
+    This is the username : {{user_name}}
+  </p>
+  <p>
+    This is the sorteddictionary : {{sorted_dictionary}}
+  </p>
+
+  <div class="container" id="business-table">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <table id="business" class="table table-striped table-bordered table-hover" style="width:100%">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Surname</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Postcode</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in people_table %}
+            <tr>
+              <td>{{ person[0] }}</td>
+              <td>{{ person[1] }}</td>
+              <td>{{ person[2] }}</td>
+              <td>{{ person[3] }}</td>
+              <td>{{ person[5] }}</td>
+              <td>{{ person[4] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% elif people_results==False %}
+  <p>No results found</p>
+
+  {% else %}
+
+  {% endif %}
+</div>
+
+{% endblock content %}
