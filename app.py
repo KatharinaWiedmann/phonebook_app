@@ -60,12 +60,7 @@ def searchpeople():
         people_name_list = create_people_name_list()
         people_results = extract_people_name_list(user_name)
         if people_results != False:
-            user_LatLong = flask_getting_latlong_from_user(user_location)
-            if user_LatLong != False:
-                results = getting_latlong_from_people_name(user_name)
-                distance_list = calculate_haversine_distance(user_LatLong, results)
-                distance_postcode_dictionary = create_unsorted_dictionary(distance_list, people_results)
-                sorted_dictionary = create_distance_postcode_dictionary(distance_postcode_dictionary)
+            sorted_dictionary_people = flask_sort_people_surname(user_name, user_location, people_results)
 
 
 

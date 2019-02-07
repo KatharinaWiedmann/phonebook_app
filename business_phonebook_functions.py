@@ -540,15 +540,12 @@ def flask_sort_business_category(user_category, user_location):
 
 
 ###---Flask: search by surname and location---####
-def flask_sort_people_surname(user_name, user_location):
+def flask_sort_people_surname(user_name, user_location, people_results):
     #user_name = user_name.title()
-    people_results = extract_people_name_list(user_name)
-    if people_results != False:
-        user_LatLong = flask_getting_latlong_from_user(user_location)
-        if user_LatLong != False:
-            results = getting_latlong_from_people_name(user_name)
-            distance_list = calculate_haversine_distance(user_LatLong, results)
-            distance_postcode_dictionary = create_unsorted_dictionary(distance_list, people_results)
-            sorted_dictionary = create_distance_postcode_dictionary(distance_postcode_dictionary)
-    else:
-        return False
+    user_LatLong = flask_getting_latlong_from_user(user_location)
+    if user_LatLong != False:
+        results = getting_latlong_from_people_name(user_name)
+        distance_list = calculate_haversine_distance(user_LatLong, results)
+        distance_postcode_dictionary = create_unsorted_dictionary(distance_list, people_results)
+        sorted_dictionary_people = create_distance_postcode_dictionary(distance_postcode_dictionary)
+        return sorted_dictionary_people
