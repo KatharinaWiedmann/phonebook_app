@@ -527,8 +527,16 @@ def flask_getting_latlong_from_user(user_location):
     else:
         print('Postcode not recognized!')
 
-###---Flask: search by business type and location---####
+###---Flask: sorting alphabetically---###
 
+def sort_alphabetically_people(distance_postcode_dictionary):
+        alphabetically_sorted_dictionary = sorted(distance_postcode_dictionary.items(), key= lambda kv:kv[1][1])
+        return alphabetically_sorted_dictionary
+
+
+
+
+###---Flask: search by business type and location---####
 def flask_sort_business_category(user_category, user_location):
         business_results = extract_business_type_list(user_category)
         user_LatLong = flask_getting_latlong_from_user(user_location)
@@ -537,6 +545,15 @@ def flask_sort_business_category(user_category, user_location):
         distance_postcode_dictionary = create_unsorted_dictionary(distance_list, business_results)
         sorted_dictionary = create_distance_postcode_dictionary(distance_postcode_dictionary)
         return sorted_dictionary
+
+###---Flask: search by business name and location---####
+def flask_sort_business_name(user_location, user_name, business_results):
+    user_LatLong = flask_getting_latlong_from_user(user_location)
+    results = getting_latlong_from_business_name(user_name)
+    distance_list = calculate_haversine_distance(user_LatLong, results)
+    distance_postcode_dictionary = create_unsorted_dictionary(distance_list, business_results)
+#    sorted_dictionary = create_distance_postcode_dictionary(distance_postcode_dictionary)
+    return distance_postcode_dictionary
 
 
 ###---Flask: search by surname and location---####

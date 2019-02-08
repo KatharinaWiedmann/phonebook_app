@@ -29,6 +29,25 @@
 </div>
 
 <div class="container">
+  <p>Sorting</p>
+  <div class="form-group" id="search">
+    <form method="post" action="/searchbusiness">
+
+      <input type="radio" name="sorting" value="distance"/>
+      <label for="distance">Distance</label>
+      <input type="radio" name="sorting" values="name" />
+      <label for="distance">Business Name</label>
+
+      <input type="hidden" id="business_name" name="user_name" value="{{ user_name }}"/>
+      <input type="hidden" id="business_name" name="user_category" value="{{ user_category }}"/>
+      <input type="hidden" id="business_name" name="user_location" value="{{ user_location }}"/>
+
+      <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="sort_submit" value="Sort" />
+    </form>
+  </div>
+</div>
+
+<div class="container">
 {% if user_location and business_results!=False and seaching_both!=True %}
 
 <div class ="container" id="business-table">
@@ -75,6 +94,16 @@
 {% else %}
 
 {% endif %}
+</div>
+
+<div class="container">
+
+    <form method="post" action="/searchbusiness">
+
+
+      </form>
+
+
 </div>
 
 {% endblock content %}
