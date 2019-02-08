@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-  <p>Sort by Business Category OR Business Name</p>
+  <p>Search by Business Category OR Business Name</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 
@@ -29,14 +29,14 @@
 </div>
 
 <div class="container">
-  <p>Sorting</p>
+  <p>Sort Results</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 
       <input type="radio" name="sorting" value="distance"/>
       <label for="distance">Distance</label>
       <input type="radio" name="sorting" values="name" />
-      <label for="distance">Business Name</label>
+      <label for="distance">Alphabetically (Business Name)</label>
 
       <input type="hidden" id="business_name" name="user_name" value="{{ user_name }}"/>
       <input type="hidden" id="business_name" name="user_category" value="{{ user_category }}"/>

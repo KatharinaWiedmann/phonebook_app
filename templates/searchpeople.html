@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-  <p>Search by surname</p>
+  <p>Search People by Surname</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchpeople">
 
@@ -17,6 +17,24 @@
       <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
     </form>
     <a href="/people" class="btn btn-outline-dark" role="button">View All People</a>
+  </div>
+</div>
+
+<div class="container">
+  <p>Sort Results</p>
+  <div class="form-group" id="search">
+    <form method="post" action="/searchpeople">
+
+      <input type="radio" name="sorting" value="distance"/>
+      <label for="distance">Distance</label>
+      <input type="radio" name="sorting" value="name" />
+      <label for="distance">Alphabetically (Surname)</label>
+
+      <input type="hidden" id="user_name" name="user_name" value="{{ user_name }}"/>
+      <input type="hidden" id="user_location" name="user_location" value="{{ user_location }}"/>
+
+      <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="sort_submit" value="Sort" />
+    </form>
   </div>
 </div>
 

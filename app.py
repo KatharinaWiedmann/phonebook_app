@@ -86,14 +86,38 @@ def searchpeople():
         return render_template("searchpeople.html", title="People Search")
 
     elif request.method == 'POST':
-        form_data = request.form
-        user_location = form_data["location"]
-        user_name = form_data["last_name"]
-        #user_name = user_name.title()
-        people_name_list = create_people_name_list()
-        people_results = extract_people_name_list(user_name)
-        if people_results != False:
-            sorted_dictionary_people = flask_sort_people_surname(user_name, user_location, people_results)
+        if 'sort_submit' in request.form:
+            form_data = request.form
+            user_location = form_data["user_location"]
+            user_name = form_data["user_name"]
+            sort_by = form_data["sorting"]
+
+            if sort_by=="distance":
+                people_name_list = create_people_name_list()
+                people_results = extract_people_name_list(user_name)
+                if people_results != False:
+                    sorted_dictionary_people = flask_sort_people_surname(user_name, user_location, people_results)
+
+            elif sort_by=="name":
+                people_name_list = create_people_name_list()
+                people_results = extract_people_name_list(user_name)
+                if people_results != False:
+                    user_LatLong = flask_getting_latlong_from_user(user_location)
+                    if user_LatLong != False:
+                        results = getting_latlong_from_people_name(user_name)
+                        distance_list = calculate_haversine_distance(user_LatLong, results)
+                        distance_postcode_dictionary = create_unsorted_dictionary(distance_list, people_results)
+                        sorted_dictionary_people = sorted(distance_postcode_dictionary.items(), key= lambda kv:kv[1][1])
+
+        elif 'submit' in request.form:
+            form_data = request.form
+            user_location = form_data["location"]
+            user_name = form_data["last_name"]
+            #user_name = user_name.title()
+            people_name_list = create_people_name_list()
+            people_results = extract_people_name_list(user_name)
+            if people_results != False:
+                sorted_dictionary_people = flask_sort_people_surname(user_name, user_location, people_results)
 
 
 
