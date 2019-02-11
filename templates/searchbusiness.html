@@ -2,12 +2,13 @@
 
 {% block content %}
 
-<div class="container">
-  <p>Search by Business Category OR Business Name</p>
+<div class="container text-center">
+  <h1>Search by Business Category OR Business Name</h1>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 
-
+<!-- BEGINNING BUSINESS CATEGROY  -->
+<div id="business_category">
       <label for="business_type">Business Category</label>
       <select class="custom-select" name="business_type">
         <option value=None> </option>
@@ -15,32 +16,38 @@
         <option value="{{ type }}">{{ type }}</option>
         {% endfor %}
       </select>
+</div>
+<!-- ENDING BUSINESS CATEGORY  -->
 
-      <label for="business_name">Business Name</label>
-      <input type="text" id="business_name" name="business_name"/>
+   <!-- BEGINNING TEXT CENTER  -->
+      <div class="text-center" id="business_details">
+        <label for="business_name">Business Name</label>
+        <input type="text" id="business_name" name="business_name" />
 
-      <label for="location">Postcode</label>
-      <input type="text" id="location" name="location" required="required" />
+        <label for="location">Postcode</label>
+        <input type="text" id="location" name="location" required="required" />
 
-      <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
+        <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
     </form>
     <a href="/business" class="btn btn-outline-dark" role="button">View All Businesses</a>
   </div>
+    <!-- ENDING TEXT CENTER  -->
+</div>
 </div>
 
-<div class="container">
+<div class="container text-center" id="sort_results">
   <p>Sort Results</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 
-      <input type="radio" name="sorting" value="distance"/>
+      <input type="radio" name="sorting" value="distance" checked />
       <label for="distance">Distance</label>
       <input type="radio" name="sorting" values="name" />
       <label for="distance">Alphabetically (Business Name)</label>
 
-      <input type="hidden" id="business_name" name="user_name" value="{{ user_name }}"/>
-      <input type="hidden" id="business_name" name="user_category" value="{{ user_category }}"/>
-      <input type="hidden" id="business_name" name="user_location" value="{{ user_location }}"/>
+      <input type="hidden" id="business_name" name="user_name" value="{{ user_name }}" />
+      <input type="hidden" id="business_name" name="user_category" value="{{ user_category }}" />
+      <input type="hidden" id="business_name" name="user_location" value="{{ user_location }}" />
 
       <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="sort_submit" value="Sort" />
     </form>
@@ -48,60 +55,60 @@
 </div>
 
 <div class="container">
-{% if user_location and business_results!=False and seaching_both!=True %}
+  {% if user_location and business_results!=False and seaching_both!=True %}
 
-<div class ="container" id="business-table">
+  <div class="container" id="business-table">
     <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12">
-            <table id="business" class="table table-striped table-bordered table-hover" style="width:100%">
-        <thead>
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <table id="business" class="table table-striped table-bordered table-hover" style="width:100%">
+          <thead>
             <tr>
-                <th>Business Name</th>
-                <th>Category</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Postcode</th>
-                <th>Contact</th>
-                <th>Distance</th>
+              <th>Business Name</th>
+              <th>Category</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Postcode</th>
+              <th>Contact</th>
+              <th>Distance</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entry in sorted_dictionary %}
+          </thead>
+          <tbody>
+            {% for entry in sorted_dictionary %}
             <tr>
-                <td>{{ entry[1][0] }}</td>
-                <td>{{ entry[1][7] }}</td>
-                <td>{{ entry[1][1] }}</td>
-                <td>{{ entry[1][2] }}</td>
-                <td>{{ entry[1][3] }}</td>
-                <td>{{ entry[1][4] }}</td>
-                <td>{{ entry[1][6] }}</td>
-                <td>{{ entry[0] }}</td>
+              <td>{{ entry[1][0] }}</td>
+              <td>{{ entry[1][7] }}</td>
+              <td>{{ entry[1][1] }}</td>
+              <td>{{ entry[1][2] }}</td>
+              <td>{{ entry[1][3] }}</td>
+              <td>{{ entry[1][4] }}</td>
+              <td>{{ entry[1][6] }}</td>
+              <td>{{ entry[0] }}</td>
             </tr>
-        {% endfor %}
-        </tbody>
-            </table>
-        </div>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-{% elif business_results==False %}
-<p>No results found</p>
+  {% elif business_results==False %}
+  <p>No results found</p>
 
-{% elif seaching_both==True %}
-<p>Please only search by buiness name OR business category</p>
+  {% elif seaching_both==True %}
+  <p>Please only search by buiness name OR business category</p>
 
-{% else %}
+  {% else %}
 
-{% endif %}
+  {% endif %}
 </div>
 
 <div class="container">
 
-    <form method="post" action="/searchbusiness">
+  <form method="post" action="/searchbusiness">
 
 
-      </form>
+  </form>
 
 
 </div>
