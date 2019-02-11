@@ -2,26 +2,29 @@
 
 {% block content %}
 
-<div class="container">
-  <p class="explanation-title">Search People by Surname</p>
+<div class="container text-center">
+  <h1 id="title">Search People by Surname</h1>
   <div class="form-group" id="search">
     <form method="post" action="/searchpeople">
 
-
-      <label for="last_name">Surname</label>
+   <!-- BEGINNING INPUT DETAILS  -->
+     <div class="text-center" id="input_details">
+      <label for="last_name" class="label_css">Surname</label>
       <input type="text" id="last_name" name="last_name" />
 
-      <label for="location">Postcode</label>
+      <label for="location" class="label_css">Postcode</label>
       <input type="text" id="location" name="location" required="required" />
 
       <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
     </form>
     <a href="/people" class="btn btn-outline-dark" role="button">View All People</a>
   </div>
+  <!-- ENDING INPUT DETAILS  -->
+  </div>
 </div>
 
-<div class="container">
-  <p class="explanation-title">Sort Results</p>
+<div class="container text-center" id="sort_results">
+  <p class="label_css">Sort Results</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchpeople">
 

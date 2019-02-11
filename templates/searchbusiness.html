@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="container text-center">
-  <h1>Search by Business Category OR Business Name</h1>
+  <h1 id="title">Search by Business Category OR Business Name</h1>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 
 <!-- BEGINNING BUSINESS CATEGROY  -->
 <div id="business_category">
-      <label for="business_type">Business Category</label>
+      <label for="business_type" class="label_css">Business Category</label>
       <select class="custom-select" name="business_type">
         <option value=None> </option>
         {% for type in business_types %}
@@ -19,24 +19,24 @@
 </div>
 <!-- ENDING BUSINESS CATEGORY  -->
 
-   <!-- BEGINNING TEXT CENTER  -->
-      <div class="text-center" id="business_details">
-        <label for="business_name">Business Name</label>
+   <!-- BEGINNING INPUT DETAILS  -->
+      <div class="text-center" id="input_details">
+        <label for="business_name" class="label_css">Business Name</label>
         <input type="text" id="business_name" name="business_name" />
 
-        <label for="location">Postcode</label>
+        <label for="location" class="label_css">Postcode</label>
         <input type="text" id="location" name="location" required="required" />
 
         <input class="submit btn btn-outline-dark" role="button" type="submit" id="submit" name="submit" value="Search" />
     </form>
     <a href="/business" class="btn btn-outline-dark" role="button">View All Businesses</a>
   </div>
-    <!-- ENDING TEXT CENTER  -->
+  <!-- ENDING INPUT DETAILS  -->
 </div>
 </div>
 
 <div class="container text-center" id="sort_results">
-  <p>Sort Results</p>
+  <p class="label_css">Sort Results</p>
   <div class="form-group" id="search">
     <form method="post" action="/searchbusiness">
 

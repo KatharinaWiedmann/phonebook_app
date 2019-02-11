@@ -9,7 +9,7 @@ navbar {
 
 #main_title {
   padding: 90px;
-  background-color: green;
+  background-color: #DBF9F4;
 }
 
 .buttons_main_page {
@@ -19,24 +19,42 @@ navbar {
 .footer{
   position: absolute;
   bottom: 0;
-  left: 40%;
-  right:40%;
+  left: 35%;
+  right:35%;
   text-align: center;
 }
 
 
-/* BUSINESS PAGE  */
+/* BUSINESS& PEOPLE PAGE  */
 #business_category {
   padding: 40px;
-  background-color:blue;
+  background-color:#5B9279;
 }
 
-#business_details {
+#input_details {
   padding: 40px;
-  background-color: green;
+  background-color: #8FCB9B;
 }
 
 #sort_results {
-  padding: 40px;
-  background-color: yellow;
+  padding: 20px;
+  background-color: #EAE6E5;
+}
+.label_css {
+  font-size: 20px;
+  padding: 0px 5px;
+}
+
+.container {
+  padding: 0px;
+}
+
+
+#title {
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Abel', sans-serif;
+  font-size: 50px;
 }
